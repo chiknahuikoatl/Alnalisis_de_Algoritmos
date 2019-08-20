@@ -51,19 +51,33 @@
     \item[1)]{
         \begin{algorithmic}[1]
         \Procedure{POSITIVOS}{$A[\ ]$}\Comment{Recibe un arreglo con $n\geq 0$ enteros}
+        \State $is\_positive\gets True$
+        \State $array\_index\gets 0$
         \If{$len(A[]) == 0$}
             \State \textbf{return} False
         \EndIf
-        \State \textbf{return} PosRec($A[\ ], True, len(A[\ ]-1))$
-        \EndProcedure
-        \Procedure{PosRec}{$A[\ ],\ b\ Bool,\ i\ Int$}
-        \If{$i = -1$}
-            \State \textbf{return} $b$
-        \Else
-            \State \textbf{return} PosRec($A[\ ],\ b\ \text{AND}\ A[i]\geq0, i - 1$)
-        \EndIf
+        \While{$array\_index < len(A[\ ])$}
+            \State $is\_positive\ \&=\ A[array\_index] \geq 0$
+            \State $array\_index\ += 1$
+        \EndWhile\label{euclidendwhile}
+        \State \textbf{return} $is\_positive$
         \EndProcedure
     \end{algorithmic}
+    \begin{algorithmic}[1]
+    \Procedure{POSITIVOS}{$A[\ ]$}\Comment{Recibe un arreglo con $n\geq 0$ enteros}
+    \If{$len(A[]) == 0$}
+        \State \textbf{return} False
+    \EndIf
+    \State \textbf{return} PosRec($A[\ ], True, len(A[\ ]-1))$
+    \EndProcedure
+    \Procedure{PosRec}{$A[\ ],\ b\ Bool,\ i\ Int$}
+    \If{$i = -1$}
+        \State \textbf{return} $b$
+    \Else
+        \State \textbf{return} PosRec($A[\ ],\ b\ \text{AND}\ A[i]\geq0, i - 1$)
+    \EndIf
+    \EndProcedure
+\end{algorithmic}
     }
     \item[2)]{}
     \item[3)]{}
