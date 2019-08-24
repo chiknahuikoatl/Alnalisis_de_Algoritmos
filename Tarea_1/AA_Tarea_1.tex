@@ -85,7 +85,22 @@
 }
 \item[2)]{
 \begin{enumerate}
-    \item[1)]{}
+    \item[1)]{
+        \begin{algorithmic}[1]
+            \Procedure{SEGUNDO}{$A$}
+            \State $min\gets \infty$
+            \State $almostMin\gets \infty$
+            \State $thing\gets 0$
+            \While{$thing < len(A)$}
+                \If{$A[thing] <= min$}
+                    \State $almostMin\gets min$, $min\gets A[thing]$
+                \EndIf
+                \State $thing\gets 1 + thing$
+            \EndWhile\label{euclidendwhile}
+            \State \textbf{return} $almostMin$
+            \EndProcedure
+        \end{algorithmic}
+    }
     \item[2)]{}
     \item[3)]{}
 \end{enumerate}
