@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{textcomp}
+\usepackage{booktabs}
+
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[linesnumbered,lined,boxed,commentsnumbered]{algorithm2e}
+\usepackage[left=2cm, right=5cm, top=2cm]{geometry}
+
+\pagestyle{fancy}
+\lhead{Almeida, Arteaga \& Eugenio}
+\chead{Tarea 1}
+\rhead{\today}
+
+\begin{document}
+\begin{enumerate}
+\item[3)]{
+\begin{enumerate}
+    \item[1)]{
+        Propuesta de algoritmo:\\
+        \begin{algorithm}[H]
+            \SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+            \Input{Un arreglo A de enteros, con $|A| \geq 2$}
+            \Output{Un entero con el mínimo producto del arreglo A}
+            \BlankLine
+            $(m_1, m_2, M_1, M_2) \leftarrow minMax(A)$\;
+            \eIf{$m_1 < 0$}
+            {
+                \eIf{$M_1 < 0$}
+                {
+                    \KwRet{$M_1 * M_2$}
+                }
+                {
+                    \KwRet{$m_1 * M_1$}
+                }
+            }
+            {
+                \KwRet{$m_1 * m_2$}
+            }
+            \caption{minProd}
+        \end{algorithm}
+
+        \begin{algorithm}[H]
+            \SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+            \Input{Un arreglo A de enteros, con $|A| \geq 2$}
+            \Output{Una tupla $(m_1, m_2, M_1, M_2)$ donde $m_1$ contiene el mínimo de
+                    A, $m_2$ el segundo menor elemento de A, $M_1$ contiene el
+                    máximo de A y $M_2$ contiene el segundo mayor elemento de A.
+                    }
+            \BlankLine
+            $m_1 \leftarrow A[0]$\;
+            $m_2 \leftarrow A[0]$\;
+            $M_1 \leftarrow A[0]$\;
+            $M_2 \leftarrow A[0]$\;
+            $i \leftarrow 1$\;
+            \While{$i <$ length(A)}
+            {
+                $n \leftarrow A[i]$\;
+                \If{$n < m_1$}
+                {
+                    $m_2 \leftarrow m_1$\;
+                    $m_1 \leftarrow n$\;
+                }
+                \If{$n > M_1$}
+                {
+                    $M_2 \leftarrow M_1$\;
+                    $M_1 \leftarrow n$\;
+                }
+                $i \leftarrow i + 1$\;
+            }
+            \KwRet{$(m_1, m_2, M_1, M_2)$}\;
+            \caption{minMax}
+        \end{algorithm}
+    }
+    \item[2)]{}
+    \item[3)]{}
+\end{enumerate}
+}
+\end{enumerate}
+\end{document}
