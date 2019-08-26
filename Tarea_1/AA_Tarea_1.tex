@@ -145,6 +145,8 @@
     \item[3)]{}
 \end{enumerate}
 }
+
+\newpage
 \item[2)]{
 \begin{enumerate}
     \item[1)]{
@@ -154,7 +156,7 @@
             \State $almostMin\gets \infty$
             \State $thing\gets 0$
             \While{$thing < len(A)$}
-                \If{$A[thing] <= min$}
+                \If{$A[thing] \leq min$}
                     \State $almostMin\gets min$, $min\gets A[thing]$
                 \EndIf
                 \State $thing\gets 1 + thing$
@@ -164,7 +166,30 @@
         \end{algorithmic}
     }
     \item[2)]{}
-    \item[3)]{}
+    \item[3)]{\bf Argumento de complejidad en tiempo:\\}
+        Las líneas 2 - 4 del algoritmo realizan asignaciones de variables, lo
+        cual se realiza en tiempo $O(1)$. Luego, dentro del ciclo {\it while}
+        se realiza en la línea 6 una acceso a memoria del arreglo y una
+        comparación de números, lo cual conlleva en ambos casos tiempo
+        constante. Dentro del condicional, se llevan a cabo dos asignaciones
+        de variables, las cuales toman tiempo $O(1)$, luego, en la línea
+        9, se incrementa un contador, lo cual se lleva en tiempo a lo más
+        constante. Así, dentro del ciclo se llevan a cabo operaciones
+        de tiempo constante.\\
+        Notamos ahora que el ciclo {\it while} tiene un número de iteraciones
+        acotado por el tamaño del arreglo que el algoritmo que recibe como
+        entrada, a saber, por el número de elementos (la longitud) del arreglo.
+        Sea $n$ el número de elementos del arreglo de entrada, entonces el ciclo
+        {\it while} lleva a cabo a lo más $n$ iteraciones, por lo tanto,
+        como en cada iteración se llevan a cabo operaciones de a lo más tiempo
+        constante, es correcto decir que el ciclo corre en tiempo $O(n)$.
+        Finalmente, la instrucción de retorno en la línea 11 se lleva a cabo en
+        tiempo constante.\\
+        Así, la complejidad del algoritmo está dada por el máximo de las
+        complejidades, la cual corresponde a la del ciclo {\it while}, así,
+        concluimos que el algoritmo corre en tiempo $O(n)$.
+
+
 \end{enumerate}
 }
 \end{enumerate}
