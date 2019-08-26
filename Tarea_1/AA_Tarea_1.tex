@@ -142,7 +142,17 @@
         \end{itemize}
     \end{itemize}
 
-    \item[3)]{}
+    \item[3)]{De las lineas 3-2 las operaciones son constantes, en
+    el primer if ocurre lo mismo dentro. Aparte en la linea
+    11 hay un return que de nuevo es constante. Hasta ahora nuestra
+    complejidad es O(1).A partir de la linea 7 hay un ciclo que se
+    ejecuta tantas veces como la longitud del arreglo, dentro del
+    cual se ejecutan 2 asignaciónes, dos comparaciones y una suma de
+    constante-variable, todo esto es constante en complejidad así
+    que en el ciclo tenemos O(n) con n la longitud del arreglo y
+    como cota asintótica domina. 
+    
+    Ergo nuestro algoritmo $\in$ O(n) en complejidad}
 \end{enumerate}
 }
 
@@ -249,12 +259,79 @@
         \begin{figure}[h!]
             \caption{Subrutina que obtiene los valores para minProd}
             \centering
-            \includegraphics[width=\textwidth]{images/minMax.png}
+            \includegraphics[width=\textwidth]{images/minMax2.png}
         \end{figure}
 
 
     }
-    \item[2)]{}
+    \item[2)]{Primero antes de demostrar la correctud de MINPROD
+    hay que revisar el algoritmo MINMAX. Esto es, verificar que
+    m$_1$ y m$_2$ son los mínimos y M$_1$, $M_2$ los máximos (adecuados).
+    
+    Apparte, como se sigue la misma técnica para obtenerlos podemos
+    mostrar sin pérdida de generalidad que los mínimos funcionan y 
+    como la demostración es análoga para los máximos, afirmar que 
+    ambos son correctos.
+    Entonces, procediendo por inducción sobre las iteraciones:
+    
+    Caso base i = 2\footnote{Esta garantizado por las condiciones del
+    problema que siempre hay al menos 2 iteraciones (\#A $\geq$ 2)}
+    Como es de tamaño 2, se hace la asignación inicial y se ejecuta
+    una iteración del ciclo. Hay dos casos:
+    \begin{itemize}
+        \item A=[primero, segundo]
+        En este caso, en la primera iteración se asigna a m$_1$ primero,
+        y en la segunda iteración se cae en el Elif, donde se asigna
+        m$_2$ de manera correcta
+        
+        \item A=[segundo, primero]
+        En este caso, en la primera iteración se asigna a m$_1$ segundo,
+        pero en la segunda iteración se cae en el if de nuevo y al
+        remplazar en m$_1$ segundo por primero, a m$_2$ se le asigna
+        segundo.
+    \end{itemize}
+    
+    \textit{\textbf{HI:} m$_1$ contiene el mínimo y m$_2$ el segundo
+    menor elemento en la iteración i = n}
+    
+    \textit{p.d. m$_1$ contiene el mínimo y m$_2$ el segundo menor elemento en la iteración i = n+1}
+    {Aquí hay 3 casos destacados, A[n+1] $\leq$ m$_1$ y A[n+1] $\leq$
+    m$_2$ y cuando no ocurre ninguna de estas. 
+    \begin{itemize}
+        \item Cuando no ocurre ninguna de estas es claro que
+        nuestro algoritmo no realiza cambios y por HI los valores
+        almacenados esran (y siguen siendo) correctos
+        
+        \item Cuando entra en el If, sabemos que el valor nuevo debe
+        ser el m$_1$ así que se asigna de manea correcta.
+        Asimismo como en cada paso por definición de m$_2$ se cumple
+        que m$_1 \leq$ m$_2$ sabemos que al reemplazar m$_2$ con el
+        antiguo valor de m$_1$ preservamos la condición o era igual o
+        se tenía que ajustar el segundo mínimo, por la condición no hay
+        otro caso.
+        
+        \item Cuando entra en el Elif, sabemos que el valor en m$_1$
+        sigue siendo correcto. Si se cambia m$_2$ es correcto ya que hay
+        un 3er número que es menor a m$_2$ y $\geq$ m$_1$ así que es el
+        nuevo segundo. De otro modo, cuando no se reemplaza sabemos que
+        pasa que m$_1 \leq$ m$_2 \leq nuevo$ y es claro que
+        no es necesario cambiar el valor de m$_2$ para tener el segundo.
+    \end{itemize}
+    Entonces min en minMax es correcto y analogamente max en minMax.
+    Ergo, minMax es correcto.
+    
+    Ahora pasamos a minProd. Esencialmente sabemos que, si hay números
+    negativos, la mejor opción es el negativo más grande PERO, si sólo
+    hay negativos, es imposible hacerlo así que necesitamos los números
+    más pequeños (por valor absoluto) para generar el producto mínimo.
+    Si bien no hay ningún negativo, es evidente que necesitamos los
+    menores números para tener el menor producto (incluso si uno es
+    cero). Nuestro algoritmo se lee igual por casos inducidos en el If
+    y como ya revisamos cada caso es adecuado.
+    
+    Ergo también es correcto
+    }
+    }
     \item[3)]{Del algortimo principal tenemos que en la primer línea se hace una
         llamada a la función auxiliar. Esta llamada se hace en tiempo constante.
         También podemos observar que el resto de las lineas se ejecutan en
