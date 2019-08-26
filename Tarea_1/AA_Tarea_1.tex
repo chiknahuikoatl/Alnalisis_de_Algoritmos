@@ -153,26 +153,72 @@
             \Procedure{SEGUNDO}{$A$}
             \State $min\gets \infty$
             \State $almostMin\gets \infty$
-            \State $thing\gets 0$
-            \While{$thing < len(A)$}
-                \If{$A[thing] \leq min$}
-                    \State $almostMin\gets min$, $min\gets A[thing]$
+            \State $index\gets 0$\Comment{Índice para recorrer el arreglo}
+            \While{$index < len(A)$}
+                \If{$A[index] \leq almostMin$}
+                    \State $almostMin\gets A[index]$
+                    \If{$almostMin \leq min$}
+                        \State $almostMin\gets min$, $min\gets A[index]$
+                    \EndIf
                 \EndIf
-                \State $thing\gets 1 + thing$
+                \State $index\gets 1 + index$
             \EndWhile\label{euclidendwhile}
             \State \textbf{return} $almostMin$
             \EndProcedure
         \end{algorithmic}
     }
-    \item[2)]{}
+    \item[2)]{Procedemos ahora a demostrar que este algoritmo es correcto cuándo
+        el arreglo contiene más de dos elementos.\\
+        Observamos que si no hay dos o más elementos en el arreglo no se puede
+        asignar un segundo valor menor y entonces en la línea 14 se devuelve
+        $\infty$.\\
+        Procederemos ahora a demostrar por inducción sobre el recorrido del
+        arreglo suponiendo que la longitud es mayor o igual a dos.
+        \begin{enumerate}
+        \item[C.B.]{Recorrer los primeros dos elementos del arreglo.\\
+            \textbf{P.D.} Que hasta este punto, el se tienen los dos elementos
+            con menor valor del arreglo.\\
+            En la primer iteración tenemos que el valor de de $A[0] \leq almostMin$
+            por el valor asignado a $almostMin$ al incializarlo. Cómo la condición se
+            cumple, entonces $almostMin$ obtiene el valor de $A[0]$ luego, la
+            segunda condición se cumple, $almostMin = \infty$ y $min = almostMin$
+            En la segunda iteración, observamos que necesariamente se cumple la
+            condición de línea 6 y el valor de $almostMin = A[1]$ luego, si
+            $min <= almostMin$ estas dos variable intercambian valores, de otro
+            modo, los valores se mantienen igual y en efecto, los valores han
+            sido reducidos de manera correcta o mantenidos con el mismo valor de
+            ser el caso.
+        }
+        \item[H.I.]{Suponemos que el algoritmo es correcto por $i$ pasos.}
+        \item[P.I.]{\textbf{P.D.} Que en la iteración $i+1$ el algoritmo sigue
+            devolviendo el valor correcto.\\
+            De aquí tenemos dos casos:\\
+            1) Si $A[i+1] > almostMin$ entonces se sale del ciclo y se devuelve
+            el último valor almacenado en $almostMin$.\\
+            2) En el otro caso asignamos el valor de $A[i+1]$ a $almostMin$, de
+            dónde tenemos otros dos subcasos:\\
+            2.a) Si el valor de $almostMin \geq min$, entonces se sale del ciclo
+            y se continúa la ejecución.\\
+            2.b) De lo contrario, se intercambian los valores y ahora se sigue
+            cumpliendo que $min \leq almostMin$. Se termina el ciclo y continúa
+            la ejecución.
+        }
+        De esto tenemos que en la $i-esima$ iteración los valores de $almostMin$
+        y de $min$ son los correctos.\\
+        Es sencillo observar que este algoritmo va a terminar siempre que reciba
+        un arreglo de tamaño finito debido a que la condición para que el ciclo
+        \texttt{while} se siga ejecutando es que el índice (siempre creciente)
+        sea menor a la longitud del arreglo.
+        \end{enumerate}
+    }
     \item[3)]{\bf Argumento de complejidad en tiempo:\\}
         Las líneas 2 - 4 del algoritmo realizan asignaciones de variables, lo
-        cual se realiza en tiempo $O(1)$. Luego, dentro del ciclo {\it while}
-        se realiza en la línea 6 una acceso a memoria del arreglo y una
+        cual se realiza en tiempo $O(1)$. Luego, dentro de los ciclos {\it while}
+        se realizan accesos a memoria del arreglo y una
         comparación de números, lo cual conlleva en ambos casos tiempo
         constante. Dentro del condicional, se llevan a cabo dos asignaciones
         de variables, las cuales toman tiempo $O(1)$, luego, en la línea
-        9, se incrementa un contador, lo cual se lleva en tiempo a lo más
+        12, se incrementa un contador, lo cual se lleva en tiempo a lo más
         constante. Así, dentro del ciclo se llevan a cabo operaciones
         de tiempo constante.\\
         Notamos ahora que el ciclo {\it while} tiene un número de iteraciones
@@ -194,7 +240,7 @@
 \item[3)]{
 \begin{enumerate}
     \item[1)]{
-        Propuesta de algoritmo:\\
+        Propuesta de algoritmo\footnote{Figuras 1 y 2}:\\
         \begin{figure}[h!]
             \caption{Rutina Princupal}
             \centering
@@ -209,7 +255,24 @@
 
     }
     \item[2)]{}
-    \item[3)]{}
+    \item[3)]{Del algortimo principal tenemos que en la primer línea se hace una
+        llamada a la función auxiliar. Esta llamada se hace en tiempo constante.
+        También podemos observar que el resto de las lineas se ejecutan en
+        tiempo constante porque son evaluaciones de condicionales y operaciones
+        aritméticas. Así, la complejidad en tiempo de esta rutina es de
+        tiempo constante.\\
+        Ahora procedemos a demostrar la complejidad en tiempo del algortimo
+        auxiliar.\\
+        Las asignaciones de las primeras 5 líneas se hacen en tiempo constante.
+        Luego, tenemos el \texttt{while} que itera sobre todas las entradas del
+        arreglo. Esto lo hace en un tiempo lineal sobre el el número de
+        elementos del arreglo. Dentro de este ciclo observamos que tenemos un
+        acceso al arreglo, dos comparaciones y cinco asignaciones, todas estas
+        ejecutadas en tiempo constante. Así, el tiempo de ejecución de esta
+        subrutina es de $5c+8c*n$, con $n$ la longitud del arreglo.\\
+        Por lo tanto, la complejidad del algoritmo $minProd$ es $O(n)$.
+
+    }
 \end{enumerate}
 }
 \end{enumerate}
