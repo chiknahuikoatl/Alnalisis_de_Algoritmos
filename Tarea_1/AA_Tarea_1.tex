@@ -55,7 +55,7 @@
         \State $is\_positive\gets True$
         \State $array\_index\gets 0$
         \If{$len(A[]) == 0$}
-            \State \textbf{return} False
+            \State \textbf{return} True
         \EndIf
         \While{$array\_index < len(A[\ ])$}
             \State $is\_positive\ \&=\ A[array\_index] \geq 0$
@@ -132,7 +132,13 @@
         observaciones para mostrar que el algoritmo es correcto:
         \begin{itemize}
             \item Si el arreglo es vacío, por vacuidad no existe un elemento
-                negativo, esto equivale a que todos son positivos.
+                negativo, esto equivale a que todos son positivos. Así,
+                el algoritmo es correcto al asignar True a $is\_positive$
+                cuando el arreglo es vacío.
+
+            \item Al regresar la variable $is\_positive$, la cual cumple la
+                invariante del ciclo while y el caso cuando el arreglo es vacío,
+                concluimos que el algoritmo es correcto.
         \end{itemize}
     \end{itemize}
 
